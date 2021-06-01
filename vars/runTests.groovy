@@ -193,7 +193,7 @@ def call(Map options) {
             // Checkout the repo
             stage(clone_stage_name) {
                 cleanWs notFailBuild: true
-                sh 'git clone --local /var/jenkins/salt.git . && git remote remove origin || true'
+                sh 'git clone --quiet --local /var/jenkins/salt.git . || true ; git config --unset remote.origin.url || true'
                 checkout scm
             }
 
